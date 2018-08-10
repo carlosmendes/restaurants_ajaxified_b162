@@ -10,7 +10,7 @@
 
 <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x300&sensor=false&maptype=roadmap&markers=color:red|#{@restaurant.address}" %>
 
-<h2>
+<h2 id="reviews-counter">
   <%= pluralize @restaurant.reviews.size, "review" %>
 </h2>
 
@@ -23,3 +23,5 @@
     <% end %>
   <% end %>
 </div>
+
+<%= render 'reviews/form', restaurant: @restaurant, review: @review %>

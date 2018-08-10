@@ -1,0 +1,22 @@
+<% if @review.errors.any? %>
+  // did not save
+  // refresh the form with the errors
+  var form = document.querySelector('#new_review');
+  var newForm = '<%= j render "reviews/form", restaurant: @restaurant, review: @review %>';
+  form.innerHTML = newForm;
+<% else %>
+  // review saved!
+  // add the new review to the reviews div
+  var reviews = document.querySelector('#reviews');
+  var newReview = '<%= j render "reviews/show", review: @review %>';
+  reviews.insertAdjacentHTML('beforeend',newReview);
+
+  // refresh the form with the errors
+  var form = document.querySelector('#new_review');
+  var newForm = '<%= j render "reviews/form", restaurant: @restaurant, review: Review.new %>';
+  form.innerHTML = newForm;
+
+
+  // refresh the reviews counter
+  document.querySelector('#reviews-counter').innerHTML = '<%= j pluralize @restaurant.reviews.size, "review" %>';
+<% end %>
